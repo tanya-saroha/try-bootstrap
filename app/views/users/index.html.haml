@@ -1,0 +1,22 @@
+%html
+  %body
+    = link_to 'Add user', new_user_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-warning btn-sm'}
+    #modal-window.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog"}
+      .modal-dialog{role: "document"}
+        .modal-content
+
+    %table.table.table-bordered.table-striped.table-hover
+      %thead
+        %th NAME
+        %th EMAIL
+        %th ROLE_TYPE
+        %th STATUS
+        %th ACTIONS
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.full_name
+            %td= user.email
+            %td= User::ROLES[user.role.to_sym]
+            %td= User::STATUS[user.status.to_sym]
+            %td Edit
