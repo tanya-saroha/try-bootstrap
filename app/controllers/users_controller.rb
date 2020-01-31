@@ -29,6 +29,12 @@ class UsersController < ApplicationController
     redirect_to users_path and return if !user.errors.present?
   end
 
+  def destroy
+    user = User.where(id: params[:id]).first
+    user.destroy
+    redirect_to users_path
+  end
+
   private
 
   def permit_params
