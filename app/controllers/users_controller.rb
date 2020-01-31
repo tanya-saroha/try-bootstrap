@@ -16,6 +16,19 @@ class UsersController < ApplicationController
     redirect_to users_path and return if !user.errors.present?
   end
 
+  def edit
+    @user = User.where(id: params[:id]).first
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update
+    user = User.where(id: params[:id]).first
+    user.update(permit_params)
+    redirect_to users_path and return if !user.errors.present?
+  end
+
   private
 
   def permit_params

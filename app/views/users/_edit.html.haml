@@ -1,0 +1,22 @@
+.modal-header
+  Edit User
+.row
+  .col-2
+  .col-9
+    = simple_form_for @user,  url: "users/#{@user.id}" , html:{class: 'form', multipart: true, id: 'edit_user_form'}, remote: true, method: :put, authenticity_token: true, data: { type: :json } ,defaults: {input_html: {class: 'form-control input-sm'}}do |f|
+      .modal-body
+        .row.mb-lg-2
+          = f.input :full_name, label: false, placeholder: 'Full Name', class: 'form-control'
+        .row.mb-lg-2
+          = f.input :email, label: false, placeholder: 'Email', class: 'form-control'
+        .row.mb-lg-2
+          .col-8.pl-0.pr-0
+            .radio-group
+              = f.collection_radio_buttons :role, [['admin', 'Admin'], ['customer_executive', 'Customer Executive']], :first, :last
+        .row.mb-lg-2
+          = f.input :mobile_number, label: false, placeholder: 'Contact(Optional)', class: 'form-control'
+        .row.mb-lg-6
+          .col-4
+            = f.submit 'UPDATE USER', class: 'btn btn-warning'
+          .col-4
+            = f.submit 'CANCEL', class: 'btn btn-secondary', "data-dismiss"=> "modal"

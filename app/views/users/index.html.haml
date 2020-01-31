@@ -19,4 +19,10 @@
             %td= user.email
             %td= User::ROLES[user.role.to_sym]
             %td= User::STATUS[user.status.to_sym]
-            %td Edit
+            %td= link_to 'Edit', edit_user_path(user), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-warning btn-sm'}
+            #modal-window.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog"}
+              .modal-dialog{role: "document"}
+                .modal-content
+
+#user_modal.modal.fade aria-hidden="true" role="dialog"
+.modal-content
