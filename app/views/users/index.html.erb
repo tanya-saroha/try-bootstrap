@@ -1,0 +1,24 @@
+<html>
+  <body>
+    <table>
+      <thead>
+        <th>NAME</th>
+        <th>EMAIL</th>
+        <th>ROLE_TYPE</th>
+        <th>STATUS</th>
+        <th>ACTIONS</th>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%=user.full_name%></td>
+            <td><%=user.email%></td>
+            <td><%=User::ROLES[user.role.to_sym]%></td>
+            <td><%=User::STATUS[user.status.to_sym]%></td>
+            <td>Edit</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>
