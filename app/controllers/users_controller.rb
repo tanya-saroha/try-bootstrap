@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    load_roles
     respond_to do |format|
       format.js
     end
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.where(id: params[:id]).first
+    load_roles
     respond_to do |format|
       format.js
     end
@@ -39,5 +41,9 @@ class UsersController < ApplicationController
 
   def permit_params
     params.require(:user).permit(:full_name, :mobile_number, :email, :role)
+  end
+
+  def load_roles
+    @roles = [['admin', 'Admin'], ['customer_executive', 'Customer Executive']]
   end
 end

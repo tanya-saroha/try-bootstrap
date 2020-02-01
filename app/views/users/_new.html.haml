@@ -12,7 +12,7 @@
         .row.mb-lg-2
           .col-8.pl-0.pr-0
             .radio-group
-              = f.collection_radio_buttons :role, [['admin', 'Admin'], ['customer_executive', 'Customer Executive']], :first, :last
+              = f.collection_radio_buttons :role, @roles, :first, :last, {checked: @roles[0]}
         .row.mb-lg-2
           = f.input :mobile_number, label: false, placeholder: 'Contact(Optional)', class: 'form-control'
         .row.mb-lg-6
