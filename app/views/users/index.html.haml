@@ -1,15 +1,33 @@
 %html
   %body
-    = link_to 'Add user', new_user_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-warning btn-sm'}
-    #modal-window.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog"}
-      .modal-dialog{role: "document"}
-        .modal-content
+    %nav.navbar.navbar-light.bg-dark
+      %a.navbar-brand{href: "/"}
+        %img{alt: "Logo", src: "/Logo.svg"}
+      %a.nav-item{href: "/"}
+        %img{alt: "Dashboard", src: "/ico_dashboard.svg"}
+        Dashboard
+      %a.nav-item.active{href: "/"}
+        %img{alt: "USERS", src: "/ico_users.svg"}
+        Users
+      %a.nav-item{href: "/"}
+        %img{alt: "HEY", src: "/ico_sess_mgr.svg"}
+        Session Manager
+      %a.nav-item{href: "/"}
+        %img{alt: "HEY", src: "/ico_notification.svg"}
+      %a.nav-item{href: "/"}
+        %img{alt: "HEY", src: "/ico_user.svg"}
+        John Smith
+
+      = link_to 'Add user', new_user_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-warning btn-sm'}
+      #modal-window.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog"}
+        .modal-dialog{role: "document"}
+          .modal-content
 
     %table.table.table-bordered.table-striped.table-hover
       %thead
         %th NAME
         %th EMAIL
-        %th ROLE_TYPE
+        %th ROLE TYPE
         %th STATUS
         %th ACTIONS
       %tbody
@@ -18,7 +36,10 @@
             %td= user.full_name
             %td= user.email
             %td= User::ROLES[user.role.to_sym]
-            %td= User::STATUS[user.status.to_sym]
+            %td
+              - image=STATUS_ICONS[user.status.to_sym]
+              %img{alt: "HEY", src: image}
+              =User::STATUS[user.status.to_sym]
             %td
               .row
                 .col-3
